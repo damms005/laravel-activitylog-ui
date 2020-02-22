@@ -1,0 +1,17 @@
+{
+	"name": "damms005/laravel-activitylog-ui",
+	"description": "A UI for the laravel-activitylog that we all love!",
+	"type": "library",
+	"authors": [
+		{
+			"name": "Damilola Olowookere",
+			"email": "damms005@gmail.com"
+		}
+	],
+	"require": {
+		"spatie/laravel-activitylog": "^3.0"
+	},
+	"require-dev": {
+		"orchestra/testbench": "^4.0"
+	}
+}
