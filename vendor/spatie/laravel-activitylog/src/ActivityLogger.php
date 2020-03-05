@@ -6,6 +6,7 @@ use Illuminate\Auth\AuthManager;
 use Illuminate\Contracts\Config\Repository;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Traits\Macroable;
 use Spatie\Activitylog\Contracts\Activity as ActivityContract;
 use Spatie\Activitylog\Exceptions\CouldNotLogActivity;
@@ -100,6 +101,13 @@ class ActivityLogger
     public function withProperty(string $key, $value)
     {
         $this->getActivity()->properties = $this->getActivity()->properties->put($key, $value);
+
+        return $this;
+    }
+
+    public function createdAt(Carbon $dateTime)
+    {
+        $this->getActivity()->created_at = $dateTime;
 
         return $this;
     }

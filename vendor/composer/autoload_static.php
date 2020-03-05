@@ -20,6 +20,8 @@ class ComposerStaticInit11e48e0b6b9e8ad88aaec803e101f533
         'e39a8b23c42d4e1452234d762b03835a' => __DIR__ . '/..' . '/ramsey/uuid/src/functions.php',
         'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
         '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
+        '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
+        'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         'e91d0dc994644828154ae2387ede1ca8' => __DIR__ . '/..' . '/spatie/string/src/string_functions.php',
         '72b1e3f4a2af9b30b3f137b3ec2057fc' => __DIR__ . '/..' . '/spatie/laravel-activitylog/src/helpers.php',
@@ -41,6 +43,7 @@ class ComposerStaticInit11e48e0b6b9e8ad88aaec803e101f533
         'T' => 
         array (
             'TijsVerkoyen\\CssToInlineStyles\\' => 31,
+            'TCG\\Voyager\\' => 12,
         ),
         'S' => 
         array (
@@ -61,6 +64,7 @@ class ComposerStaticInit11e48e0b6b9e8ad88aaec803e101f533
             'Symfony\\Component\\HttpKernel\\' => 29,
             'Symfony\\Component\\HttpFoundation\\' => 33,
             'Symfony\\Component\\Finder\\' => 25,
+            'Symfony\\Component\\Filesystem\\' => 29,
             'Symfony\\Component\\EventDispatcher\\' => 34,
             'Symfony\\Component\\ErrorHandler\\' => 31,
             'Symfony\\Component\\Debug\\' => 24,
@@ -68,6 +72,8 @@ class ComposerStaticInit11e48e0b6b9e8ad88aaec803e101f533
             'Symfony\\Component\\Console\\' => 26,
             'Spatie\\String\\' => 14,
             'Spatie\\Activitylog\\' => 19,
+            'Seld\\PharUtils\\' => 15,
+            'Seld\\JsonLint\\' => 14,
         ),
         'R' => 
         array (
@@ -77,6 +83,7 @@ class ComposerStaticInit11e48e0b6b9e8ad88aaec803e101f533
         array (
             'Psr\\SimpleCache\\' => 16,
             'Psr\\Log\\' => 8,
+            'Psr\\Http\\Message\\' => 17,
             'Psr\\Container\\' => 14,
             'Prophecy\\' => 9,
             'PhpOption\\' => 10,
@@ -95,10 +102,22 @@ class ComposerStaticInit11e48e0b6b9e8ad88aaec803e101f533
         array (
             'League\\Flysystem\\' => 17,
             'League\\CommonMark\\' => 18,
+            'Larapack\\VoyagerHooks\\' => 22,
+            'Larapack\\Hooks\\' => 15,
+            'Larapack\\DoctrineSupport\\' => 25,
+        ),
+        'J' => 
+        array (
+            'JsonSchema\\' => 11,
         ),
         'I' => 
         array (
+            'Intervention\\Image\\' => 19,
             'Illuminate\\' => 11,
+        ),
+        'G' => 
+        array (
+            'GuzzleHttp\\Psr7\\' => 16,
         ),
         'F' => 
         array (
@@ -112,14 +131,27 @@ class ComposerStaticInit11e48e0b6b9e8ad88aaec803e101f533
         array (
             'Dotenv\\' => 7,
             'Doctrine\\Instantiator\\' => 22,
+            'Doctrine\\DBAL\\' => 14,
             'Doctrine\\Common\\Lexer\\' => 22,
             'Doctrine\\Common\\Inflector\\' => 26,
+            'Doctrine\\Common\\Cache\\' => 22,
+            'Doctrine\\Common\\' => 16,
             'DeepCopy\\' => 9,
+            'Damms005\\LaravelActivitylogUi\\' => 30,
         ),
         'C' => 
         array (
             'Cron\\' => 5,
+            'Composer\\XdebugHandler\\' => 23,
+            'Composer\\Spdx\\' => 14,
+            'Composer\\Semver\\' => 16,
+            'Composer\\CaBundle\\' => 18,
+            'Composer\\' => 9,
             'Carbon\\' => 7,
+        ),
+        'A' => 
+        array (
+            'Arrilot\\Widgets\\' => 16,
         ),
     );
 
@@ -142,6 +174,10 @@ class ComposerStaticInit11e48e0b6b9e8ad88aaec803e101f533
         'TijsVerkoyen\\CssToInlineStyles\\' => 
         array (
             0 => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src',
+        ),
+        'TCG\\Voyager\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/tcg/voyager/src',
         ),
         'Symfony\\Polyfill\\Php73\\' => 
         array (
@@ -211,6 +247,10 @@ class ComposerStaticInit11e48e0b6b9e8ad88aaec803e101f533
         array (
             0 => __DIR__ . '/..' . '/symfony/finder',
         ),
+        'Symfony\\Component\\Filesystem\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/filesystem',
+        ),
         'Symfony\\Component\\EventDispatcher\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/event-dispatcher',
@@ -239,6 +279,14 @@ class ComposerStaticInit11e48e0b6b9e8ad88aaec803e101f533
         array (
             0 => __DIR__ . '/..' . '/spatie/laravel-activitylog/src',
         ),
+        'Seld\\PharUtils\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/seld/phar-utils/src',
+        ),
+        'Seld\\JsonLint\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/seld/jsonlint/src/Seld/JsonLint',
+        ),
         'Ramsey\\Uuid\\' => 
         array (
             0 => __DIR__ . '/..' . '/ramsey/uuid/src',
@@ -250,6 +298,10 @@ class ComposerStaticInit11e48e0b6b9e8ad88aaec803e101f533
         'Psr\\Log\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
+        ),
+        'Psr\\Http\\Message\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
         'Psr\\Container\\' => 
         array (
@@ -287,9 +339,33 @@ class ComposerStaticInit11e48e0b6b9e8ad88aaec803e101f533
         array (
             0 => __DIR__ . '/..' . '/league/commonmark/src',
         ),
+        'Larapack\\VoyagerHooks\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/larapack/voyager-hooks/src',
+        ),
+        'Larapack\\Hooks\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/larapack/hooks/src',
+        ),
+        'Larapack\\DoctrineSupport\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/larapack/doctrine-support/src',
+        ),
+        'JsonSchema\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/justinrainbow/json-schema/src/JsonSchema',
+        ),
+        'Intervention\\Image\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/intervention/image/src/Intervention/Image',
+        ),
         'Illuminate\\' => 
         array (
             0 => __DIR__ . '/..' . '/laravel/framework/src/Illuminate',
+        ),
+        'GuzzleHttp\\Psr7\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/guzzlehttp/psr7/src',
         ),
         'Faker\\' => 
         array (
@@ -307,6 +383,10 @@ class ComposerStaticInit11e48e0b6b9e8ad88aaec803e101f533
         array (
             0 => __DIR__ . '/..' . '/doctrine/instantiator/src/Doctrine/Instantiator',
         ),
+        'Doctrine\\DBAL\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL',
+        ),
         'Doctrine\\Common\\Lexer\\' => 
         array (
             0 => __DIR__ . '/..' . '/doctrine/lexer/lib/Doctrine/Common/Lexer',
@@ -315,17 +395,53 @@ class ComposerStaticInit11e48e0b6b9e8ad88aaec803e101f533
         array (
             0 => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Common/Inflector',
         ),
+        'Doctrine\\Common\\Cache\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/doctrine/cache/lib/Doctrine/Common/Cache',
+        ),
+        'Doctrine\\Common\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/doctrine/event-manager/lib/Doctrine/Common',
+        ),
         'DeepCopy\\' => 
         array (
             0 => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy',
+        ),
+        'Damms005\\LaravelActivitylogUi\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src',
         ),
         'Cron\\' => 
         array (
             0 => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron',
         ),
+        'Composer\\XdebugHandler\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/composer/xdebug-handler/src',
+        ),
+        'Composer\\Spdx\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/composer/spdx-licenses/src',
+        ),
+        'Composer\\Semver\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/composer/semver/src',
+        ),
+        'Composer\\CaBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/composer/ca-bundle/src',
+        ),
+        'Composer\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/composer/composer/src/Composer',
+        ),
         'Carbon\\' => 
         array (
             0 => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon',
+        ),
+        'Arrilot\\Widgets\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/arrilot/laravel-widgets/src',
         ),
     );
 

@@ -1,23 +1,32 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Damms005\LaravelActivitylogUi\Controllers;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Route;
 use Spatie\Activitylog\Models\Activity;
+use TCG\Voyager\Facades\Voyager;
 
 class ActivitylogUiController extends Controller
 {
 	public function index(Request $request)
 	{
-		$activities = Activity::with('causer', 'subject')->orderBy('id', 'desc')->paginate(15);
-		$this->prepareActivitiesForView($activities);
+		dd('dead');
+		$rendered_activities = Activity::with('causer', 'subject')->orderBy('id', 'desc')->paginate(15);
 
-		return view('admin.laravel-activitylog', compact('activities'));
+		$this->mapActivitiesForView($rendered_activities);
+
+		$all_activities = Activity::all(['description', 'subject_type']);
+
+		return view('activitylog-ui::index', compact('rendered_activities', 'all_activities'));
 	}
 
 	public function show(Request $request)
 	{
-		$builder = \Spatie\Activitylog\Models\Activity::with('causer', 'subject');
+		$builder = Activity::with('causer', 'subject');
 
 		if ($request->filled('causer_id')) {
 			$builder = $builder->where('causer_id', $request->causer_id);
@@ -47,34 +56,53 @@ class ActivitylogUiController extends Controller
 			$builder = $builder->where('properties', 'like', "%{$request->contain_data}%");
 		}
 
-		$activities = $builder->paginate(15);
-		$this->prepareActivitiesForView($activities);
+		$rendered_activities = $builder->paginate(15);
+
+		$this->mapActivitiesForView($rendered_activities);
+
 		$request->flash();
 
-		return view('admin.laravel-activitylog', compact('activities'));
+		$all_activities = Activity::all(['description', 'subject_type']);
+
+		return view('activitylog-ui::index', compact('rendered_activities', 'all_activities'));
 	}
 
-	public function prepareActivitiesForView(&$activities)
+	/**
+	 * Formats each item in the activities collection so that
+	 * it conforms to that format expected by the blade View
+	 *
+	 * @param Collection $activities
+	 *
+	 * @return Collection
+	 */
+	public function mapActivitiesForView(LengthAwarePaginator &$activities)
 	{
 		return $activities->map(function ($activity) {
 			$activity->causerObject  = $this->getVoyagerLinkOrLabelForCauser($activity);
 			$activity->subjectClass  = collect(explode('\\', $activity->subject_type))->last();
 			$activity->subjectObject = $this->getSubjectObject($activity);
 			$activity->properties    = json_encode($activity->properties, JSON_PRETTY_PRINT);
+
+			return $activity;
 		});
 	}
 
-	public function getSubjectObject($activity)
+	public function getSubjectObject(Activity $activity)
 	{
-		$obj   = collect();
+		$obj = collect();
+
 		$model = $activity->subject_type::where('id', $activity->subject_id)->first();
+
 		$obj->put('modelClassName', collect(explode('\\', $activity->subject_type))->last());
+
 		if ($model) {
-			$id       = $model[$model->getKeyName()];
-			$dataType = \Voyager::model('DataType')->whereName($model->getTable())->first();
-			$slug     = $dataType->slug;
-			// $slug     = $activity->description != 'deleted' ? $dataType->slug : null;
-			$obj->put('link', $this->getVoyagerLinkTagForTable($slug, $id, "id:{$id}"));
+			$id = $model[$model->getKeyName()];
+
+			$dataType = Voyager::model('DataType')->whereName($model->getTable())->first();
+
+			$voyagerSlug = $activity->description != 'deleted' ? $dataType->slug : null;
+
+			$obj->put('link', $this->getVoyagerLinkTagForTable($voyagerSlug, $id, "id:{$id}"));
 		} else {
 			$obj->put('link', $this->getVoyagerLinkTagForTable(null, $activity->subject_id, "id:{$activity->subject_id}"));
 		}
@@ -84,22 +112,29 @@ class ActivitylogUiController extends Controller
 
 	public function getVoyagerLinkTagForTable($voyager_slug, $id, $anchorText)
 	{
-		return
-		($voyager_slug && \Route::has("voyager.{$voyager_slug}.index"))
-		?
-		collect(['href' => route("voyager.{$voyager_slug}.index") . '/' . $id, 'anchorText' => $anchorText])
-		:
-		collect(['href' => 'javascript:void(0)', 'anchorText' => $anchorText]);
+		if ($this->isVoyagerRouteExists($voyager_slug)) {
+			return collect(['href' => route("voyager.{$voyager_slug}.index") . '/' . $id, 'anchorText' => $anchorText]);
+		}
+
+		return collect(['href' => 'javascript:void(0)', 'anchorText' => $anchorText]);
 	}
 
-	public function getVoyagerLinkOrLabelForCauser($activity)
+	public function getVoyagerLinkOrLabelForCauser(Activity $activity)
 	{
-		return
+		if ($this->isVoyagerUserExists($activity)) {
+			return $this->getVoyagerLinkTagForTable('users', $activity->causer_id, optional($activity->causer)->fullname);
+		}
 
-		($activity->causer_id && \Route::has('voyager.users.index'))
-		?
-		$this->getVoyagerLinkTagForTable('users', $activity->causer_id, optional($activity->causer)->fullname)
-		:
-		$this->getVoyagerLinkTagForTable(null, null, 'system anonymous action');
+		return $this->getVoyagerLinkTagForTable(null, null, 'system anonymous action');
+	}
+
+	public function isVoyagerUserExists(Activity $activity)
+	{
+		return $activity->causer_id && Route::has('voyager.users.index');
+	}
+
+	public function isVoyagerRouteExists($voyager_slug)
+	{
+		return $voyager_slug && Route::has("voyager.{$voyager_slug}.index");
 	}
 }
