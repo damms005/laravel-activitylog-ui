@@ -2,8 +2,8 @@
 
 namespace Damms005\LaravelActivitylogUi;
 
-use Damms005\LaravelActivitylogUi\Controllers\ActivitylogUiController;
 use Illuminate\Support\ServiceProvider;
+use Damms005\LaravelActivitylogUi\Http\Controllers\ActivitylogUiController;
 
 class ActivitylogUiServiceProvider extends ServiceProvider
 {

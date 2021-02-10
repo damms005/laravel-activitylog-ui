@@ -1,10 +1,10 @@
 <?php
 
-namespace Damms005\LaravelActivitylogUi\Controllers;
+namespace Damms005\LaravelActivitylogUi\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Routing\Controller;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Route;
 use Spatie\Activitylog\Models\Activity;
@@ -14,7 +14,6 @@ class ActivitylogUiController extends Controller
 {
 	public function index(Request $request)
 	{
-		dd('dead');
 		$rendered_activities = Activity::with('causer', 'subject')->orderBy('id', 'desc')->paginate(15);
 
 		$this->mapActivitiesForView($rendered_activities);

@@ -1,6 +1,6 @@
 {
 	"name": "damms005/laravel-activitylog-ui",
-	"description": "A Voyager-powered UI for the spatie/laravel-activitylog/laravel-activitylog package that we all love!",
+	"description": "A Voyager-powered UI for the spatie/laravel-activitylog package that we all love!",
 	"type": "library",
 	"authors": [
 		{
@@ -15,7 +15,7 @@
 	],
 	"require": {
 		"spatie/laravel-activitylog": "^3.0",
-		"illuminate/support": "^6.0",
+		"illuminate/support": "^8.0",
 		"tcg/voyager": "^1.3"
 	},
 	"require-dev": {

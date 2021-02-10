@@ -1,9 +1,9 @@
 <?php
 
-use Damms005\LaravelActivitylogUi\Controllers\ActivitylogUiController;
 use Illuminate\Support\Facades\Route;
+use Damms005\LaravelActivitylogUi\Http\Controllers\ActivitylogUiController;
 
-Route::group(['prefix' => 'activitylog-ui', 'middleware' => 'auth'], function () {
+Route::group(['prefix' => '/admin/activitylog-ui', 'middleware' => ['web', 'auth']], function () {
 	Route::get('/', [ActivitylogUiController::class, "index"]);
 	Route::post('submit', [ActivitylogUiController::class, "show"])->name('activitylog.filter.submit');
 });

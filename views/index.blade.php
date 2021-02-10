@@ -7,7 +7,7 @@
 <h1 class="page-title">
 	<i class="voyager-logbook"></i>
 	<p>Spatie Activity Log</p>
-	<span class="page-description">Activity Log Entries - This Activity Log report by default all created, updated and deleted activities.</span>
+	<span class="page-description">Activity Log Entries - default activity types: created, updated and deleted activities.</span>
 </h1>
 
 @stop
@@ -27,8 +27,8 @@
 						<label class="w-64 mr-2">
 							<select name="causer_id" class="select2">
 								<option value="">&nbsp;</option>
-								@foreach (\App\User::all(['id','firstname','middlename','lastname']) as $user)
-								<option {{ $user->id == old('causer_id') ? 'selected' : '' }} value="{{$user->id}}">{{$user->fullname}} ({{$user->id}})</option>
+								@foreach (\App\User::all() as $user)
+								<option {{ $user->id == old('causer_id') ? 'selected' : '' }} value="{{$user->id}}">{{$user->email}})</option>
 								@endforeach
 							</select>
 						</label>

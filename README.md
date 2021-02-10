@@ -11,7 +11,7 @@ The UI was intentionally designed to fit the purpose of usage for audit trail. H
 
 ## Installation
 
-- Ensure you have properly installed [laravel-activitylog](https://github.com/spatie/laravel-activitylog#installation)
+- Ensure you have properly installed [Spatie's laravel-activitylog package](https://github.com/spatie/laravel-activitylog#installation) and [Voyager](https://github.com/spatie/tcg/voyager) and run your migrations
 
 - Install this package into your Laravel project via composer:
 
@@ -27,22 +27,14 @@ Publish the assets:
 php artisan vendor:publish --provider="Damms005\ActivitylogUi\ActivitylogUiServiceProvider" --tag="migrations"
 ```
 
-## Integration ideas
+## Inspirations
 
-- Voyager
-- Tailwindcss
+- [Voyager](https://voyager-docs.devdojo.com/)
+- [Tailwindcss](https://tailwindcss.com/)
 
-## Testing
+## Todo
 
 - Write tests
-
-## Security
-
-If you discover any security related issues, please email freek@spatie.be instead of using the issue tracker.
-
-## Credits
-
-[The Spatie team ❤](https://spatie.be/) and [All Contributors](conts)
 
 ## License
 
