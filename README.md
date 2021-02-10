@@ -19,18 +19,7 @@ The UI was intentionally designed to fit the purpose of usage for audit trail. H
 composer require damms005/laravel-activitylog-ui
 ```
 
-The package will automatically register itself.
-
-Publish the assets:
-
-```
-php artisan vendor:publish --provider="Damms005\ActivitylogUi\ActivitylogUiServiceProvider" --tag="migrations"
-```
-
-## Inspirations
-
-- [Voyager](https://voyager-docs.devdojo.com/)
-- [Tailwindcss](https://tailwindcss.com/)
+This package automatically registers a route for you at `/admin/activitylog-ui`. You can now visit `https://<yourwebsite.app.io>/admin/activitylog-ui` to start filtering/auditing your activity logs
 
 ## Todo
 
