@@ -1,5 +1,7 @@
 # laravel-activitylog-ui
 
+![Art for damms005/laravel-activitylog-ui](https://banners.beyondco.de/laravel-activitylog-ui.png?theme=light&packageManager=composer+require&packageName=damms005%2Flaravel-activitylog-ui&pattern=architect&style=style_1&description=A+Voyager-powered+UI+for+the+spatie%2Flaravel-activitylog+package+that+we+all+love%21&md=1&showWatermark=1&fontSize=100px&images=database)
+
 A UI for [Spatie's](https://spatie.be/) awesome [laravel-activitylog](https://github.com/spatie/laravel-activitylog) package that we all love.
 
 ## Features
