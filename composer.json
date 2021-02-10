@@ -8,6 +8,7 @@
 			"email": "damms005@gmail.com"
 		}
 	],
+	"license": "MIT",
 	"keywords": [
 		"laravel UI log",
 		"spatie activity log",
