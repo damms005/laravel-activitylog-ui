@@ -25,12 +25,15 @@
 						<hr>
 						Causer
 						<label class="w-64 mr-2">
-							<select name="causer_id" class="select2">
+							<select name="causer_type" class="select">
 								<option value="">&nbsp;</option>
-								@foreach (\App\User::all() as $user)
-								<option {{ $user->id == old('causer_id') ? 'selected' : '' }} value="{{$user->id}}">{{$user->email}})</option>
+								@foreach (config('activitylog-ui.user_model') as $type)
+								<option {{ $type == old('causer_type') ? 'selected' : '' }} value="{{$type}}">{{(new \ReflectionClass($type))->getShortName()}}</option>
 								@endforeach
 							</select>
+						</label>
+						<label class="w-64 mr-2">
+                            <input value="{{old('causer_id')}}" name="causer_id" class="h-10 w-16" type="number">
 						</label>
 
 						Acted-on Entity

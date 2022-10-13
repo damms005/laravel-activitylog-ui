@@ -27,6 +27,10 @@ class ActivitylogUiController extends Controller
 	{
 		$builder = Activity::with('causer', 'subject');
 
+		if ($request->filled('causer_type')) {
+			$builder = $builder->where('causer_type', $request->causer_type);
+		}
+
 		if ($request->filled('causer_id')) {
 			$builder = $builder->where('causer_id', $request->causer_id);
 		}
