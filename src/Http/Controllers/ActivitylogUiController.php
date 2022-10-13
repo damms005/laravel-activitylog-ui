@@ -100,7 +100,7 @@ class ActivitylogUiController extends Controller
 
 			$dataType = Voyager::model('DataType')->whereName($model->getTable())->first();
 
-			$voyagerSlug = $activity->description != 'deleted' ? $dataType->slug : null;
+			$voyagerSlug = $activity->description != 'deleted' ? data_get($dataType, 'slug', '') : null;
 
 			$obj->put('link', $this->getVoyagerLinkTagForTable($voyagerSlug, $id, "id:{$id}"));
 		} else {
