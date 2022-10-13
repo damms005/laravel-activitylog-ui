@@ -90,7 +90,8 @@ class ActivitylogUiController extends Controller
 	{
 		$obj = collect();
 
-		$model = $activity->subject_type::where('id', $activity->subject_id)->first();
+        $keyName = app($activity->subject_type)->getKeyName();
+		$model = $activity->subject_type::where($keyName, $activity->subject_id)->first();
 
 		$obj->put('modelClassName', collect(explode('\\', $activity->subject_type))->last());
 
