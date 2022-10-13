@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use Spatie\Activitylog\Models\Activity;
 use TCG\Voyager\Facades\Voyager;
@@ -65,9 +66,12 @@ class ActivitylogUiController extends Controller
 
 		$request->flash();
 
-		$all_activities = Activity::all(['description', 'subject_type']);
+        $descriptions = [
+            'created', 'updated', 'deleted'
+        ];
+        $subject_types = Activity::select('subject_type')->distinct()->get()->pluck('subject_type')->all();
 
-		return view('activitylog-ui::index', compact('rendered_activities', 'all_activities'));
+		return view('activitylog-ui::index', compact('rendered_activities', 'descriptions', 'subject_types'));
 	}
 
 	/**
@@ -126,8 +130,8 @@ class ActivitylogUiController extends Controller
 	public function getVoyagerLinkOrLabelForCauser(Activity $activity)
 	{
 		if ($this->isVoyagerUserExists($activity)) {
-			$model = Voyager::model('DataType')->where('model_name', $activity->causer_type)->first();
-			$slug = $model ? $model->slug : 'users';
+            $model = Voyager::model('DataType')->where('model_name', $activity->causer_type)->first();
+            $slug = $model ? $model->slug : 'users';
 			return $this->getVoyagerLinkTagForTable($slug, $activity->causer_id, optional($activity->causer)->fullname . ' (' . $activity->causer_id . ')');
 		}
 

@@ -25,7 +25,7 @@
 						<hr>
 						Causer
 						<label class="w-64 mr-2">
-							<select name="causer_type" class="select">
+							<select name="causer_type" class="select" style="height: 28px">
 								<option value="">&nbsp;</option>
 								@foreach (config('activitylog-ui.user_model') as $type)
 								<option {{ $type == old('causer_type') ? 'selected' : '' }} value="{{$type}}">{{(new \ReflectionClass($type))->getShortName()}}</option>
@@ -38,10 +38,10 @@
 
 						Acted-on Entity
 						<label class="w-64 mr-2">
-							<select name="subject_type" class="select2">
+							<select name="subject_type" class="select" style="height: 28px">
 								<option value="">&nbsp;</option>
-								@foreach ($all_activities->unique('subject_type') as $activity)
-								<option {{ $activity->subject_type == old('subject_type') ? 'selected' : '' }}>{{$activity->subject_type}}</option>
+								@foreach ($subject_types as $subject_type)
+								<option {{ $subject_type == old('subject_type') ? 'selected' : '' }}>{{(new \ReflectionClass($subject_type))->getShortName()}}</option>
 								@endforeach
 							</select>
 						</label>
@@ -53,10 +53,10 @@
 
 						Action
 						<label class="w-24 mr-2">
-							<select name="description" class="select2">
+							<select name="description" class="select" style="height: 28px">
 								<option value="">&nbsp;</option>
-								@foreach ($all_activities->unique('description') as $activity)
-								<option {{ $activity->description == old('description') ? 'selected' : '' }}>{{$activity->description}}</option>
+								@foreach ($descriptions as $description)
+								<option {{ $description == old('description') ? 'selected' : '' }}>{{$description}}</option>
 								@endforeach
 							</select>
 						</label>
