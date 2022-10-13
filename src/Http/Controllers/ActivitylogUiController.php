@@ -112,10 +112,8 @@ class ActivitylogUiController extends Controller
 
 	public function getVoyagerLinkTagForTable($voyager_slug, $id, $anchorText)
 	{
-		if ($this->isVoyagerUserExists($activity)) {
-			$model = Voyager::model('DataType')->where('model_name', $activity->causer_type)->first();
-			$slug = $model ? $model->slug : 'users';
-			return $this->getVoyagerLinkTagForTable($slug, $activity->causer_id, optional($activity->causer)->fullname . ' (' . $activity->causer_id . ')');
+		if ($this->isVoyagerRouteExists($voyager_slug)) {
+			return collect(['href' => route("voyager.{$voyager_slug}.index") . '/' . $id, 'anchorText' => $anchorText]);
 		}
 
 		return collect(['href' => 'javascript:void(0)', 'anchorText' => $anchorText]);
@@ -124,7 +122,9 @@ class ActivitylogUiController extends Controller
 	public function getVoyagerLinkOrLabelForCauser(Activity $activity)
 	{
 		if ($this->isVoyagerUserExists($activity)) {
-			return $this->getVoyagerLinkTagForTable('users', $activity->causer_id, optional($activity->causer)->fullname . ' (' . $activity->causer_id . ')');
+			$model = Voyager::model('DataType')->where('model_name', $activity->causer_type)->first();
+			$slug = $model ? $model->slug : 'users';
+			return $this->getVoyagerLinkTagForTable($slug, $activity->causer_id, optional($activity->causer)->fullname . ' (' . $activity->causer_id . ')');
 		}
 
 		return $this->getVoyagerLinkTagForTable(null, null, 'system anonymous action');
