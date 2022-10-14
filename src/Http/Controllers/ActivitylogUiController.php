@@ -19,9 +19,9 @@ class ActivitylogUiController extends Controller
 
 		$this->mapActivitiesForView($rendered_activities);
 
-		$all_activities = Activity::all(['description', 'subject_type']);
+		list($descriptions, $subject_types) = $this->getOptions();
 
-		return view('activitylog-ui::index', compact('rendered_activities', 'all_activities'));
+		return view('activitylog-ui::index', compact('rendered_activities', 'descriptions', 'subject_types'));
 	}
 
 	public function show(Request $request)
@@ -66,13 +66,23 @@ class ActivitylogUiController extends Controller
 
 		$request->flash();
 
+        list($descriptions, $subject_types) = $this->getOptions();
+
+		return view('activitylog-ui::index', compact('rendered_activities', 'descriptions', 'subject_types'));
+	}
+
+    protected function getOptions()
+    {
+
         $descriptions = [
             'created', 'updated', 'deleted'
         ];
         $subject_types = Activity::select('subject_type')->distinct()->get()->pluck('subject_type')->all();
 
-		return view('activitylog-ui::index', compact('rendered_activities', 'descriptions', 'subject_types'));
-	}
+        return [
+            $descriptions, $subject_types
+        ];
+    }
 
 	/**
 	 * Formats each item in the activities collection so that
