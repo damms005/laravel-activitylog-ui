@@ -53,7 +53,7 @@ class ActivitylogUiController extends Controller
 		}
 
 		if ($request->filled('to')) {
-			$builder = $builder->where('created_at', '<=', "{$request->to} 11:59:59");
+			$builder = $builder->where('created_at', '<=', "{$request->to} 23:59:59");
 		}
 
 		if ($request->filled('contain_data')) {
