@@ -51,6 +51,8 @@
 							<input value="{{old('subject_id')}}" name="subject_id" class="h-10 w-16" type="number">
 						</label>
 
+						<br>
+
 						Action
 						<label class="w-24 mr-2">
 							<select name="description" class="select" style="height: 28px">
@@ -77,6 +79,7 @@
 						</label>
 
 						<input class="bg-green-dark rounded p-2 px-4 text-white" type="submit" value="Audit" />
+						<a class="bg-green-dark rounded p-2 px-4 text-white" href="{{ route('activitylog.index') }}">Clear filter</a>
 					</div>
 				</form>
 			</div>
