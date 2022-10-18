@@ -15,6 +15,8 @@ class ActivitylogUiController extends Controller
 {
 	public function index(Request $request)
 	{
+		$request->flush();
+
 		$rendered_activities = Activity::with('causer', 'subject')->orderBy('id', 'desc')->paginate(15);
 
 		$this->mapActivitiesForView($rendered_activities);
