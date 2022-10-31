@@ -41,7 +41,7 @@
 							<select name="subject_type" class="select" style="height: 28px">
 								<option value="">&nbsp;</option>
 								@foreach ($subject_types as $subject_type)
-								<option {{ $subject_type == old('subject_type') ? 'selected' : '' }}>{{(new \ReflectionClass($subject_type))->getShortName()}}</option>
+								<option value="{{$subject_type}}" {{ $subject_type == old('subject_type') ? 'selected' : '' }}>{{(new \ReflectionClass($subject_type))->getShortName()}}</option>
 								@endforeach
 							</select>
 						</label>
