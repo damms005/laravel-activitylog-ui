@@ -18,7 +18,7 @@
 		<div class="col-md-12">
 
 			<div class="bg-blue-lighteR rounded border mt-8 mb-8 p-4">
-				<form action="{{route('activitylog.filter.submit')}}" method="POST">
+				<form action="{{route('activitylog.filter.submit')}}" method="GET">
 					@csrf
 					<div>
 						<h4>Audit</h4>
