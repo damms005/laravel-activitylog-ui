@@ -18,27 +18,30 @@
 		<div class="col-md-12">
 
 			<div class="bg-blue-lighteR rounded border mt-8 mb-8 p-4">
-				<form action="{{route('activitylog.filter.submit')}}" method="POST">
+				<form action="{{route('activitylog.filter.submit')}}" method="GET">
 					@csrf
 					<div>
 						<h4>Audit</h4>
 						<hr>
 						Causer
 						<label class="w-64 mr-2">
-							<select name="causer_id" class="select2">
+							<select name="causer_type" class="select" style="height: 28px">
 								<option value="">&nbsp;</option>
-								@foreach (\App\User::all() as $user)
-								<option {{ $user->id == old('causer_id') ? 'selected' : '' }} value="{{$user->id}}">{{$user->email}})</option>
+								@foreach (config('activitylog-ui.user_model') as $type)
+								<option {{ $type == old('causer_type') ? 'selected' : '' }} value="{{$type}}">{{(new \ReflectionClass($type))->getShortName()}}</option>
 								@endforeach
 							</select>
+						</label>
+						<label class="w-64 mr-2">
+                            <input value="{{old('causer_id')}}" name="causer_id" class="h-10 w-16" type="number">
 						</label>
 
 						Acted-on Entity
 						<label class="w-64 mr-2">
-							<select name="subject_type" class="select2">
+							<select name="subject_type" class="select" style="height: 28px">
 								<option value="">&nbsp;</option>
-								@foreach ($all_activities->unique('subject_type') as $activity)
-								<option {{ $activity->subject_type == old('subject_type') ? 'selected' : '' }}>{{$activity->subject_type}}</option>
+								@foreach ($subject_types as $subject_type)
+								<option value="{{$subject_type}}" {{ $subject_type == old('subject_type') ? 'selected' : '' }}>{{(new \ReflectionClass($subject_type))->getShortName()}}</option>
 								@endforeach
 							</select>
 						</label>
@@ -48,12 +51,14 @@
 							<input value="{{old('subject_id')}}" name="subject_id" class="h-10 w-16" type="number">
 						</label>
 
+						<br>
+
 						Action
 						<label class="w-24 mr-2">
-							<select name="description" class="select2">
+							<select name="description" class="select" style="height: 28px">
 								<option value="">&nbsp;</option>
-								@foreach ($all_activities->unique('description') as $activity)
-								<option {{ $activity->description == old('description') ? 'selected' : '' }}>{{$activity->description}}</option>
+								@foreach ($descriptions as $description)
+								<option {{ $description == old('description') ? 'selected' : '' }}>{{$description}}</option>
 								@endforeach
 							</select>
 						</label>
@@ -74,6 +79,7 @@
 						</label>
 
 						<input class="bg-green-dark rounded p-2 px-4 text-white" type="submit" value="Audit" />
+						<a class="bg-green-dark rounded p-2 px-4 text-white" href="{{ route('activitylog.index') }}">Clear filter</a>
 					</div>
 				</form>
 			</div>

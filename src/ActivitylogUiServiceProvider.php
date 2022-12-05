@@ -26,5 +26,9 @@ class ActivitylogUiServiceProvider extends ServiceProvider
 	{
 		$this->loadRoutesFrom(__DIR__ . '/../routes.php');
 		$this->loadViewsFrom(__DIR__ . '/../views', 'activitylog-ui');
+
+		$this->publishes([
+				__DIR__ . '/../publishable/config/activitylog-ui.php' => config_path('activitylog-ui.php')
+		]);
 	}
 }
